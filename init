@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+files=(.bashrc .vimrc)
+cur_dir=$(pwd)
+
+declare -A funcs
+funcs['.bashrc']=initbash
+funcs['.vimrc']=initvim
+
+ask() {
+  echo -en "$1"
+  read response
+  while [[ ! $response =~ (yes|no) ]];
+  do
+    echo -n "Enter yes or no : "
+    read response
+  done
+}
+
+initbash() {
+  echo "setting up ~/.bashrc ... "
+  echo -e "cd "$cur_dir"\n. .bashrc\ncd" > ~/.bashrc
+  echo Done.
+}
+
+initvim() {
+  echo "setting up ~/.vimrc ... "
+  touch ~/.vimrc
+  echo "source $cur_dir/.vimrc" > ~/.vimrc
+  echo "setting vim's backup directory as ~/.backup ... "
+  touch ~/.backup
+  echo Done.
+}
+
+if [[ "$#" -eq 0 ]];
+then
+  for i in ${files[@]};
+  do
+    ask "Initialize ~/$i ? (yes or no) "
+    if [[ $response == yes ]];
+    then
+      ${funcs[$i]}
+    else
+      echo "skipped file ~/$i"
+    fi
+  done
+elif [[ "$1" == 'list' ]];
+then
+  echo All dotfiles available :
+  for i in ${files[@]};
+  do
+    echo $i
+  done
+else
+  ask "This script will overwrite the dotfiles in your home directory\nAre you sure you want to proceed? (yes or no) "
+  if [[ $response == yes ]];
+  then
+    if [[ $1 == "all" ]];
+    then
+      for i in ${files[@]};
+      do
+        ${funcs[$i]}
+      done
+    else
+      args=("$@")
+      for i in ${args[@]};
+      do
+        action=${funcs[$i]}
+        if [[ -n "$action" ]];
+        then
+          $action
+        else
+          echo "cannot find file $i"
+        fi
+      done
+    fi
+  else
+    echo "Action aborted"
+  fi
+fi
