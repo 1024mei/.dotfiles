@@ -3,8 +3,6 @@ syntax on " turn on syntax highlighting
 filetype on " turn on filetype detecton 
 filetype plugin on " turn on plugin per filetype
 filetype indent on " turn on auto-indent per filetype
-set linebreak " if the line is too long, soft-wrap it to the next line
-set wrapmargin=3 " num of chars before the end of screen to start wrapping
 set number " turn on line numbering
 set expandtab " expands tabs into spaces
 set tabstop=2 " set tab equal to two spaces
@@ -29,6 +27,8 @@ set matchpairs+=<:> " add < > to pair matching;
 " set formatoptions+=r " auto insert comment leader after hitting <enter> 
 " set guifont=LiberationMono\ 12  " nice font for gvim
 " set visualbell " blink instead of beeping
+" set linebreak " if the line is too long, soft-wrap it to the next line
+" set wrapmargin=3 " num of chars before the end of screen to start wrapping
 
 colorscheme morning
 inoremap <C-C> <Esc>
