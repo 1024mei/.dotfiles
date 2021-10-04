@@ -15,8 +15,19 @@ alias l='ls -CF'
 # useful aliases
 alias rm='rm -i'
 alias cp='cp -i'
+alias mv='mv -i'
 alias cs='clear'
 
 # aliases for vim
 alias vi='vim'
 alias vim='vim -p'
+
+#aliases for git
+alias ga='git add'
+alias gs='git status'
+alias gss='gs -s'
+alias gl='git log --graph'
+alias gls='gl --pretty=oneline'
+alias glss='gls -10'
+alias gc='git commit'
+alias gcm='gc -m'
