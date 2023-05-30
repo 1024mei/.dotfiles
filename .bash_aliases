@@ -11,6 +11,10 @@ alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
+# misc
+alias g++='g++ -std=c++17 -o out'
+alias g11='g++-11 -std=c++20 -pthread -o out'
+alias ghc='ghc -o out'
 
 # useful aliases
 alias rm='rm -i'

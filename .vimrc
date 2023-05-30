@@ -30,6 +30,7 @@ set matchpairs+=<:> " add < > to pair matching;
 " set linebreak " if the line is too long, soft-wrap it to the next line
 " set wrapmargin=3 " num of chars before the end of screen to start wrapping
 
+autocmd BufReadPost,BufNewFile,BufRead *.sage set filetype=python
 colorscheme morning
 inoremap <C-C> <Esc>
 
